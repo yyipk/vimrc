@@ -1,0 +1,4 @@
+#!/bin/sh
+killall picocom
+cd /home/yangyue/work/bl_iot_sdk/tools/flash_tool
+python3 core/bl60x_simple_flasher.py  bl602 download bl602/conf/simple_flasher_cfg.toml
