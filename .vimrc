@@ -1,4 +1,8 @@
-set sw=4
+set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
+set termencoding=utf-8
+set encoding=utf-8
+
+set sw=5
 set ts=4
 set et
 set smarttab
@@ -9,6 +13,10 @@ set sm
 set selection=inclusive
 set wildmenu
 set mousemodel=popup
+
+set nocscopeverbose
+set tags+=~/systags
+
 au FileType php setlocal dict+=~/.vim/dict/php_funclist.dict
 au FileType css setlocal dict+=~/.vim/dict/css.dict
 au FileType c setlocal dict+=~/.vim/dict/c.dict
@@ -27,7 +35,7 @@ set t_Co=256 "终端设置为256色
 "set cuc "高亮光标所在列
 set shortmess=atI   " 启动的时候不显示那个援助乌干达儿童的提示  
 set go=             " 不要图形按钮  
-color desert     " 设置背景主题  
+color elflord     " 设置背景主题  
 "color ron     " 设置背景主题  
 "color torte     " 设置背景主题 
 set guifont=Courier_New:h10:cANSI   " 设置字体  
@@ -90,16 +98,19 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 call plug#end()
 nmap <C-p> :Files<CR>
-nmap <C-e> :Buffers<CR>
+"nmap <C-e> :Buffers<CR>
 let g:fzf_action = { 'ctrl-e': 'edit' }
 
+command! -bang -nargs=* Ag
+  \ call fzf#vim#ag(<q-args>,
+  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \                 <bang>0)
+nmap <C-g> :Ag<CR>
+
 autocmd BufNewFile * normal G
-"set mouse=v
-"set clipboard=unnamed
 "比较文件  
 nnoremap <C-F2> :vert diffsplit 
-"nnoremap <Leader>fu :CtrlPFunky<Cr>
-"nnoremap <C-n> :CtrlPFunky<Cr>
 "列出当前目录文件  
 map <F3> :NERDTreeToggle<CR>
 imap <F3> <ESC> :NERDTreeToggle<CR>
@@ -123,14 +134,13 @@ set clipboard+=unnamed
 "自动保存
 set autowrite
 "set ruler                   " 打开状态栏标尺
-"set cursorline              " 突出显示当前行
+set cursorline              " 突出显示当前行
 set magic                   " 设置魔术
 set guioptions-=T           " 隐藏工具栏
 set guioptions-=m           " 隐藏菜单栏
-""set foldcolumn=0
-""set foldmethod=indent 
-""set foldlevel=3 
-" 不要使用vi的键盘模式，而是vim自己的
+
+
+
 set nocompatible
 " 去掉输入错误的提示声音
 set noeb
@@ -164,7 +174,9 @@ set matchtime=1
 set scrolloff=3
 filetype plugin indent on 
 "打开文件类型检测, 加了这句才可以用智能补全
-set completeopt=longest,menu
+"set completeopt=longest,menu
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CTags的设定  
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -175,15 +187,15 @@ set completeopt=longest,menu
 ""let Tlist_File_Fold_Auto_Close = 0  " 不要关闭其他文件的tags  
 ""let Tlist_Enable_Fold_Column = 0    " 不要显示折叠树  
 "let Tlist_Show_One_File=1            "不同时显示多个文件的tag，只显示当前文件的
-"设置tags  
+""设置tags  
 "set tags=tags;  
 "set autochdir 
 
-let g:pydiction_location = '~/.vim/after/complete-dict'
-let g:pydiction_menu_height = 20
-let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
-let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplMapWindowNavArrows = 1
-let g:miniBufExplMapCTabSwitchBufs = 1
-let g:miniBufExplModSelTarget = 1
+"let g:pydiction_location = '~/.vim/after/complete-dict'
+"let g:pydiction_menu_height = 20
+"let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
+"let g:miniBufExplMapWindowNavVim = 1
+"let g:miniBufExplMapWindowNavArrows = 1
+"let g:miniBufExplMapCTabSwitchBufs = 1
+"let g:miniBufExplModSelTarget = 1
 
