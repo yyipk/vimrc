@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =3
+let g:netrw_dirhist_3='/home/yangyue/work/ali_bl_606'
+let g:netrw_dirhist_2='/home/yangyue/work/ali_bl_606/solutions/bl606_cpu1_demo'
+let g:netrw_dirhist_1='/home/yangyue'
